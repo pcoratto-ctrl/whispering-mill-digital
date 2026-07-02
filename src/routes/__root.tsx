@@ -91,14 +91,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESC },
-      { title: "Antico Mulino delle Fate | Lamezia Terme" },
-      { property: "og:title", content: "Antico Mulino delle Fate | Lamezia Terme" },
-      { name: "twitter:title", content: "Antico Mulino delle Fate | Lamezia Terme" },
-      { name: "description", content: "Scopri l’Antico Mulino delle Fate a Lamezia Terme: un antico mulino ad acqua immerso nella natura, tra storia, tradizioni locali, didattica, paesaggio e memoria" },
-      { property: "og:description", content: "Scopri l’Antico Mulino delle Fate a Lamezia Terme: un antico mulino ad acqua immerso nella natura, tra storia, tradizioni locali, didattica, paesaggio e memoria" },
-      { name: "twitter:description", content: "Scopri l’Antico Mulino delle Fate a Lamezia Terme: un antico mulino ad acqua immerso nella natura, tra storia, tradizioni locali, didattica, paesaggio e memoria" },
+      { property: "og:site_name", content: "Antico Mulino delle Fate" },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/cHwEfCUUp0Zsc1VXwZJp9yYPGYz2/social-images/social-1783012087958-Mulino-delle-Fate-01.webp" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/cHwEfCUUp0Zsc1VXwZJp9yYPGYz2/social-images/social-1783012087958-Mulino-delle-Fate-01.webp" },
+
     ],
     links: [
       { rel: "stylesheet", href: appCss },
