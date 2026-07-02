@@ -111,46 +111,51 @@ export function IntroLanding({ onEnter }: Props) {
             />
           </div>
 
-          <p className="museum-eyebrow mb-6 text-terra/80">
-            Associazione Culturale · Lamezia Terme
-          </p>
+          <div className="inline-flex rounded-full border border-pergamena/40 bg-pergamena/70 px-5 py-2 shadow-[0_10px_30px_-15px_oklch(0.28_0.09_25/0.4)] backdrop-blur-md">
+            <p className="museum-eyebrow text-bordeaux/80">
+              Associazione Culturale · Lamezia Terme
+            </p>
+          </div>
 
-          <h1 className="museum-title">
-            <span className="block text-bordeaux">
-              Antico Mulino delle Fate
-            </span>
-            <span
-              className="mt-1 block italic"
-              style={{ color: "color-mix(in oklab, var(--terra) 55%, var(--grano))" }}
-            >
-              Memoria, Natura e Tradizione
-            </span>
-          </h1>
+          <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-pergamena/40 bg-pergamena/75 px-6 py-6 shadow-[0_20px_60px_-25px_oklch(0.28_0.09_25/0.55)] backdrop-blur-xl sm:px-10 sm:py-8">
+            <h1 className="museum-title">
+              <span className="block text-bordeaux">
+                Antico Mulino delle Fate
+              </span>
+              <span
+                className="mt-1 block italic"
+                style={{ color: "color-mix(in oklab, var(--terra) 60%, var(--bordeaux))" }}
+              >
+                Memoria, Natura e Tradizione
+              </span>
+            </h1>
 
-          <p className="museum-lede mx-auto mt-8 max-w-xl text-marrone/85">
-            Esplora un luogo dove acqua, pietra e memoria raccontano
-            la storia del territorio.
-          </p>
+            <p className="museum-lede mx-auto mt-6 max-w-xl text-marrone">
+              Esplora un luogo dove acqua, pietra e memoria raccontano
+              la storia del territorio.
+            </p>
+          </div>
 
           {/* CTA */}
-          <div className="mt-12 flex justify-center">
+          <div className="mt-10 flex justify-center">
             <PillButton onClick={handleEnter} variant="primary" aria-label="Visita ora il sito">
               Visita ora
             </PillButton>
           </div>
 
           {/* Awards / attribution */}
-          <div className="mt-16 space-y-2">
-            <p className="museum-eyebrow text-terra/70">
+          <div className="mx-auto mt-12 inline-flex max-w-lg flex-col items-center gap-2 rounded-2xl border border-pergamena/40 bg-pergamena/70 px-6 py-5 shadow-[0_15px_45px_-20px_oklch(0.28_0.09_25/0.5)] backdrop-blur-md">
+            <p className="museum-eyebrow text-bordeaux/75">
               Vincitore del Premio Internazionale
             </p>
             <p
-              className="text-base sm:text-lg italic text-bordeaux"
+              className="text-base italic text-bordeaux sm:text-lg"
               style={{ fontFamily: "var(--font-display)" }}
             >
               «La Fabbrica nel Paesaggio»
             </p>
-            <p className="mx-auto mt-4 max-w-lg text-[11px] sm:text-xs tracking-wide text-terra/70">
+            <span className="h-px w-10 bg-grano/50" />
+            <p className="max-w-md text-[11px] tracking-wide text-marrone/85 sm:text-xs">
               Realtà culturale legata alla Federazione Italiana delle
               Associazioni e Club per l’UNESCO
             </p>
