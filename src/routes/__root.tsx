@@ -72,7 +72,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 const SITE_TITLE = "Antico Mulino delle Fate — Lamezia Terme";
 const SITE_DESC =
-  "Antico mulino ad acqua del XVIII secolo a Lamezia Terme, custode di natura, grani antichi, tradizioni locali e attività didattiche. Un luogo culturale immerso nel bosco di Nicastro.";
+  "Antico mulino ad acqua del XVIII secolo a Lamezia Terme: natura, grani antichi, tradizioni e didattica nel bosco di Nicastro.";
+
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
