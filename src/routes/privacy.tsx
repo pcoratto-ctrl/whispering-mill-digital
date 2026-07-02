@@ -6,10 +6,17 @@ export const Route = createFileRoute("/privacy")({
     meta: [
       { title: "Privacy Policy — Antico Mulino delle Fate" },
       { name: "description", content: "Informativa privacy dell'Associazione Culturale Amici dell'Antico Mulino delle Fate." },
+      { property: "og:title", content: "Privacy Policy — Antico Mulino delle Fate" },
+      { property: "og:description", content: "Come trattiamo i dati personali dei visitatori del sito dell'Antico Mulino delle Fate." },
+      { property: "og:url", content: "https://mulinodellefate.lovable.app/privacy" },
+      { name: "twitter:title", content: "Privacy Policy — Antico Mulino delle Fate" },
+      { name: "twitter:description", content: "Come trattiamo i dati personali dei visitatori del sito dell'Antico Mulino delle Fate." },
     ],
+    links: [{ rel: "canonical", href: "https://mulinodellefate.lovable.app/privacy" }],
   }),
   component: Privacy,
 });
+
 
 function Privacy() {
   return (
