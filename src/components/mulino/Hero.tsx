@@ -1,20 +1,44 @@
+import { useEffect, useState } from "react";
 import { IMG } from "./assets";
 import { PillButton } from "./PillButton";
 
+const SLIDES = [
+  { src: IMG.mulinoGiorno, alt: "Esterno dell'Antico Mulino delle Fate a Lamezia Terme" },
+  { src: IMG.statuaFata, alt: "Statua della fata custode del Mulino" },
+  { src: IMG.boscoLucciole, alt: "Bosco intorno al Mulino delle Fate" },
+  { src: IMG.mulinoLucciole, alt: "Il Mulino delle Fate con lucciole nel bosco" },
+  { src: IMG.mulinoNotte, alt: "Il Mulino delle Fate di notte" },
+];
+
 export function Hero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % SLIDES.length);
+    }, 5500);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section
       id="home"
       className="relative isolate min-h-dvh w-full overflow-hidden bg-pergamena"
     >
-      {/* Background image — very blurred, warm */}
+      {/* Background slideshow — softly blurred, warm */}
       <div className="absolute inset-0">
-        <img
-          src={IMG.mulinoGiorno}
-          alt="Esterno dell'Antico Mulino delle Fate a Lamezia Terme"
-          className="h-full w-full object-cover blur-2xl scale-110 img-graded"
-          loading="eager"
-        />
+        {SLIDES.map((s, i) => (
+          <img
+            key={s.src}
+            src={s.src}
+            alt={i === 0 ? s.alt : ""}
+            aria-hidden={i === 0 ? undefined : true}
+            className={`absolute inset-0 h-full w-full object-cover blur-2xl scale-110 img-graded transition-opacity duration-[2200ms] ease-in-out ${
+              i === index ? "opacity-100" : "opacity-0"
+            }`}
+            loading={i === 0 ? "eager" : "lazy"}
+          />
+        ))}
       </div>
 
       {/* Warm parchment overlay */}
