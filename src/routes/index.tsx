@@ -24,10 +24,36 @@ export const Route = createFileRoute("/")({
     meta: [
       { property: "og:image", content: OG_IMAGE },
       { name: "twitter:image", content: OG_IMAGE },
+      { property: "og:url", content: "https://mulinodellefate.lovable.app/" },
+    ],
+    links: [{ rel: "canonical", href: "https://mulinodellefate.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Antico Mulino delle Fate",
+          description:
+            "Antico mulino ad acqua del XVIII secolo immerso nel bosco di Nicastro a Lamezia Terme.",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Via Serra 12",
+            addressLocality: "Lamezia Terme",
+            addressRegion: "CZ",
+            addressCountry: "IT",
+          },
+          telephone: "+393281365043",
+          email: "anticomdf@gmail.com",
+          url: "https://mulinodellefate.lovable.app",
+          image: OG_IMAGE,
+        }),
+      },
     ],
   }),
   component: Index,
 });
+
 
 function Index() {
   const [hasEntered, setHasEntered] = useState(false);

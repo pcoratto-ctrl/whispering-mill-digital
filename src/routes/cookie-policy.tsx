@@ -6,10 +6,17 @@ export const Route = createFileRoute("/cookie-policy")({
     meta: [
       { title: "Cookie Policy — Antico Mulino delle Fate" },
       { name: "description", content: "Informativa sull'uso dei cookie del sito dell'Antico Mulino delle Fate." },
+      { property: "og:title", content: "Cookie Policy — Antico Mulino delle Fate" },
+      { property: "og:description", content: "Uso dei cookie tecnici e dei contenuti di terze parti sul sito dell'Antico Mulino delle Fate." },
+      { property: "og:url", content: "https://mulinodellefate.lovable.app/cookie-policy" },
+      { name: "twitter:title", content: "Cookie Policy — Antico Mulino delle Fate" },
+      { name: "twitter:description", content: "Uso dei cookie tecnici e dei contenuti di terze parti sul sito dell'Antico Mulino delle Fate." },
     ],
+    links: [{ rel: "canonical", href: "https://mulinodellefate.lovable.app/cookie-policy" }],
   }),
   component: CookiePolicy,
 });
+
 
 function CookiePolicy() {
   return (
