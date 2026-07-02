@@ -4,20 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -25,7 +11,10 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-body: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -46,99 +35,219 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand palette */
+  --color-bordeaux: var(--bordeaux);
+  --color-marrone: var(--marrone);
+  --color-terra: var(--terra);
+  --color-pergamena: var(--pergamena);
+  --color-beige: var(--beige);
+  --color-pietra: var(--pietra);
+  --color-bosco: var(--bosco);
+  --color-muschio: var(--muschio);
+  --color-grano: var(--grano);
+  --color-fata-blu: var(--fata-blu);
+  --color-fata-verde: var(--fata-verde);
+  --color-lucciola: var(--lucciola);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
+  --radius: 0.5rem;
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Brand */
+  --bordeaux: oklch(0.28 0.09 25);
+  --marrone: oklch(0.34 0.075 40);
+  --terra: oklch(0.45 0.09 45);
+  --pergamena: oklch(0.93 0.04 80);
+  --beige: oklch(0.83 0.045 75);
+  --pietra: oklch(0.74 0.035 75);
+  --bosco: oklch(0.28 0.035 145);
+  --muschio: oklch(0.48 0.055 130);
+  --grano: oklch(0.65 0.11 75);
+  --fata-blu: oklch(0.72 0.08 240);
+  --fata-verde: oklch(0.75 0.08 155);
+  --lucciola: oklch(0.86 0.13 95);
+
+  /* Semantic mapping */
+  --background: oklch(0.93 0.04 80); /* pergamena */
+  --foreground: oklch(0.28 0.05 30); /* bordeaux/marrone */
+  --card: oklch(0.95 0.03 82);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.95 0.03 82);
+  --popover-foreground: var(--foreground);
+  --primary: var(--bordeaux);
+  --primary-foreground: var(--pergamena);
+  --secondary: var(--beige);
+  --secondary-foreground: var(--bordeaux);
+  --muted: oklch(0.88 0.035 78);
+  --muted-foreground: oklch(0.42 0.04 40);
+  --accent: var(--grano);
+  --accent-foreground: var(--bordeaux);
+  --destructive: oklch(0.5 0.18 27);
+  --destructive-foreground: var(--pergamena);
+  --border: oklch(0.82 0.04 70);
+  --input: oklch(0.82 0.04 70);
+  --ring: var(--grano);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
   }
-
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--grano) 55%, transparent);
+    color: var(--bordeaux);
+  }
+}
+
+/* ------------ Image frames with graded overlay ------------ */
+@utility image-frame {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--marrone);
+}
+@utility image-frame {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg,
+        color-mix(in oklab, var(--bordeaux) 18%, transparent) 0%,
+        color-mix(in oklab, var(--bosco) 10%, transparent) 55%,
+        color-mix(in oklab, var(--marrone) 22%, transparent) 100%);
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+}
+@utility image-frame--warm {
+  &::after {
+    background:
+      linear-gradient(160deg,
+        color-mix(in oklab, var(--marrone) 30%, transparent) 0%,
+        color-mix(in oklab, var(--grano) 12%, transparent) 55%,
+        color-mix(in oklab, var(--bordeaux) 30%, transparent) 100%);
+    mix-blend-mode: multiply;
+  }
+}
+@utility image-frame--night {
+  &::after {
+    background:
+      linear-gradient(180deg,
+        color-mix(in oklab, var(--bordeaux) 28%, transparent) 0%,
+        color-mix(in oklab, oklch(0.2 0.06 260) 25%, transparent) 55%,
+        color-mix(in oklab, var(--grano) 10%, transparent) 100%);
+    mix-blend-mode: multiply;
+  }
+}
+@utility image-frame--soft {
+  &::after {
+    background:
+      linear-gradient(180deg,
+        color-mix(in oklab, var(--pergamena) 20%, transparent) 0%,
+        color-mix(in oklab, var(--marrone) 15%, transparent) 100%);
+    mix-blend-mode: multiply;
+  }
+}
+@utility image-frame--hero {
+  &::after {
+    background:
+      radial-gradient(ellipse at 30% 40%, color-mix(in oklab, var(--bordeaux) 10%, transparent) 0%, transparent 60%),
+      linear-gradient(180deg,
+        color-mix(in oklab, var(--bordeaux) 55%, transparent) 0%,
+        color-mix(in oklab, var(--bordeaux) 25%, transparent) 40%,
+        color-mix(in oklab, oklch(0.15 0.05 25) 70%, transparent) 100%);
+    mix-blend-mode: multiply;
+  }
+}
+
+@utility img-graded {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.82) contrast(0.96) brightness(0.96) sepia(0.08);
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1), filter 500ms ease;
+}
+@utility img-graded--muted {
+  filter: saturate(0.55) contrast(0.94) brightness(0.92) sepia(0.14);
+}
+
+/* ------------ Lucciole particles ------------ */
+@utility lucciola {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, color-mix(in oklab, var(--lucciola) 90%, white) 0%, color-mix(in oklab, var(--lucciola) 40%, transparent) 60%, transparent 100%);
+  filter: blur(0.5px);
+  animation: lucciola-glow 4s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0;
+}
+@keyframes lucciola-glow {
+  0%, 100% { opacity: 0; transform: translateY(0px); }
+  50% { opacity: 0.85; transform: translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lucciola { animation: none; opacity: 0.3; }
+  html { scroll-behavior: auto; }
+}
+
+/* ------------ Utility patterns ------------ */
+@utility paper-texture {
+  background-color: var(--pergamena);
+  background-image:
+    radial-gradient(color-mix(in oklab, var(--marrone) 6%, transparent) 1px, transparent 1px),
+    radial-gradient(color-mix(in oklab, var(--terra) 4%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px, 40px 40px;
+  background-position: 0 0, 12px 12px;
+}
+
+@utility fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 900ms ease, transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@utility fade-up-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@utility ornament-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: color-mix(in oklab, var(--grano) 80%, var(--bordeaux));
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+@utility ornament-rule {
+  &::before, &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, currentColor, transparent);
+    opacity: 0.5;
   }
 }
