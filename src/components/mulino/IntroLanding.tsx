@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { IMG } from "./assets";
+import { PillButton } from "./PillButton";
 
 interface Props {
   onEnter: () => void;
@@ -29,35 +30,35 @@ export function IntroLanding({ onEnter }: Props) {
       }`}
       style={{
         background:
-          "radial-gradient(ellipse at 50% 40%, #f7ecdc 0%, #f0e2cf 45%, #e9d6bd 100%)",
+          "radial-gradient(ellipse at 50% 30%, oklch(0.94 0.04 78) 0%, oklch(0.88 0.05 70) 55%, oklch(0.78 0.06 55) 100%)",
       }}
     >
-      {/* Background image — soft, blurred, foggy */}
+      {/* Background image — mulino/bosco molto sfumato */}
       <div
         className="absolute inset-0"
         style={{
           backgroundImage: `url(${IMG.mulinoGiorno})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "blur(18px) saturate(0.7) brightness(1.15)",
-          opacity: 0.35,
+          filter: "blur(20px) saturate(0.75) brightness(1.05) sepia(0.15)",
+          opacity: 0.4,
           transform: "scale(1.15)",
         }}
       />
-      {/* Warm parchment overlay */}
+      {/* Warm parchment veil */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(247,236,220,0.85) 0%, rgba(240,226,207,0.75) 50%, rgba(233,214,189,0.9) 100%)",
+            "linear-gradient(180deg, color-mix(in oklab, var(--pergamena) 82%, transparent) 0%, color-mix(in oklab, var(--beige) 70%, transparent) 60%, color-mix(in oklab, var(--marrone) 25%, transparent) 100%)",
         }}
       />
-      {/* Soft mist */}
+      {/* Soft mist / grano glow */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.4) 0%, transparent 40%), radial-gradient(circle at 80% 20%, rgba(200,150,130,0.15) 0%, transparent 45%)",
+            "radial-gradient(circle at 15% 85%, color-mix(in oklab, var(--grano) 22%, transparent) 0%, transparent 45%), radial-gradient(circle at 85% 15%, color-mix(in oklab, var(--bordeaux) 12%, transparent) 0%, transparent 50%)",
         }}
       />
 
@@ -68,115 +69,61 @@ export function IntroLanding({ onEnter }: Props) {
         }`}
       >
         <div className="mx-auto max-w-5xl">
-          <p
-            className="mb-8 text-[11px] uppercase tracking-[0.35em]"
-            style={{ color: "#7A3E24", opacity: 0.75 }}
-          >
-            Associazione Culturale
+          {/* Logo mark */}
+          <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-pergamena/90 ring-1 ring-grano/40 shadow-[0_10px_30px_-15px_oklch(0.28_0.09_25/0.5)]">
+            <img
+              src={IMG.logo}
+              alt="Logo Associazione Amici dell'Antico Mulino delle Fate"
+              className="h-full w-full object-cover"
+            />
+          </div>
+
+          <p className="museum-eyebrow mb-6 text-terra/80">
+            Associazione Culturale · Lamezia Terme
           </p>
 
-          <h1
-            className="font-light leading-[0.95] tracking-tight"
-            style={{
-              fontFamily: "'Inter Tight', ui-sans-serif, system-ui, sans-serif",
-              fontSize: "clamp(2.4rem, 8vw, 6.5rem)",
-              fontWeight: 300,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            <span className="block" style={{ color: "#3d1f14" }}>
+          <h1 className="museum-title">
+            <span className="block text-bordeaux">
               Antico Mulino delle Fate
             </span>
             <span
-              className="block mt-1"
-              style={{ color: "#c9927e", fontStyle: "italic", fontWeight: 300 }}
+              className="mt-1 block italic"
+              style={{ color: "color-mix(in oklab, var(--terra) 55%, var(--grano))" }}
             >
               Memoria, Natura e Tradizione
             </span>
           </h1>
 
-          <p
-            className="mx-auto mt-8 max-w-xl text-base sm:text-lg leading-relaxed"
-            style={{ color: "#5A241B", opacity: 0.85 }}
-          >
-            Esplora un luogo dove acqua, pietra e memoria raccontano la storia
-            del territorio.
+          <p className="museum-lede mx-auto mt-8 max-w-xl text-marrone/85">
+            Esplora un luogo dove acqua, pietra e memoria raccontano
+            la storia del territorio.
           </p>
 
           {/* CTA */}
           <div className="mt-12 flex justify-center">
-            <button
-              onClick={handleEnter}
-              className="group relative flex items-center gap-2 rounded-full pl-8 pr-2 py-2 transition-all duration-500 hover:pl-10 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-              style={{
-                background: "#3d1f14",
-                color: "#F3E1C7",
-                boxShadow: "0 10px 30px -10px rgba(61,31,20,0.4)",
-              }}
-              aria-label="Visita ora il sito"
-            >
-              <span
-                className="text-base sm:text-lg font-light tracking-wide py-3"
-                style={{ fontFamily: "'Inter Tight', sans-serif" }}
-              >
-                Visita ora
-              </span>
-              <span
-                className="flex h-11 w-11 items-center justify-center rounded-full transition-transform duration-500 group-hover:translate-x-1"
-                style={{ background: "#F3E1C7", color: "#3d1f14" }}
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14M13 5l7 7-7 7" />
-                </svg>
-              </span>
-            </button>
+            <PillButton onClick={handleEnter} variant="primary" aria-label="Visita ora il sito">
+              Visita ora
+            </PillButton>
           </div>
 
           {/* Awards / attribution */}
           <div className="mt-16 space-y-2">
-            <p
-              className="text-xs sm:text-sm tracking-[0.15em] uppercase"
-              style={{ color: "#5A241B", opacity: 0.8 }}
-            >
+            <p className="museum-eyebrow text-terra/70">
               Vincitore del Premio Internazionale
             </p>
             <p
-              className="text-sm sm:text-base italic"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                color: "#3d1f14",
-              }}
+              className="text-base sm:text-lg italic text-bordeaux"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               «La Fabbrica nel Paesaggio»
             </p>
-            <p
-              className="mt-4 text-[11px] sm:text-xs tracking-wide max-w-lg mx-auto"
-              style={{ color: "#7A3E24", opacity: 0.7 }}
-            >
+            <p className="mx-auto mt-4 max-w-lg text-[11px] sm:text-xs tracking-wide text-terra/70">
               Realtà culturale legata alla Federazione Italiana delle
               Associazioni e Club per l’UNESCO
             </p>
           </div>
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(180deg, transparent, rgba(233,214,189,0.6))",
-        }}
-      />
     </div>
   );
 }
