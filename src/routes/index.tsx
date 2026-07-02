@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { LoadingScreen } from "@/components/mulino/LoadingScreen";
 import { IntroLanding } from "@/components/mulino/IntroLanding";
 import { Navbar } from "@/components/mulino/Navbar";
 import { Hero } from "@/components/mulino/Hero";
@@ -43,11 +44,15 @@ function Index() {
 
   const handleEnter = () => {
     setHasEntered(true);
+    try {
+      sessionStorage.setItem("mulino-entered", "1");
+    } catch {}
     setTimeout(() => setShowIntro(false), 50);
   };
 
   return (
     <>
+      <LoadingScreen />
       {showIntro && <IntroLanding onEnter={handleEnter} />}
       {hasEntered && (
         <>
