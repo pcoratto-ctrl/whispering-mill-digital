@@ -1,13 +1,13 @@
-import logo from "@/assets/mulino/logo.jpg.asset.json";
-import statuaFata from "@/assets/mulino/statua-fata.webp.asset.json";
-import mulinoNotte from "@/assets/mulino/mulino-notte.jpg.asset.json";
-import mulinoGiorno from "@/assets/mulino/mulino-giorno.jpg.asset.json";
-import castelloNicastro from "@/assets/mulino/castello-nicastro.jpg.asset.json";
-import mulinoLucciole from "@/assets/mulino/mulino-lucciole.png.asset.json";
-import boscoLucciole from "@/assets/mulino/bosco-lucciole.png.asset.json";
-import didatticaSentiero from "@/assets/mulino/didattica-sentiero.jpg.asset.json";
-import didatticaAsinello from "@/assets/mulino/didattica-asinello.jpg.asset.json";
-import didatticaLaboratori from "@/assets/mulino/didattica-laboratori.jpg.asset.json";
+import logo from "@/assets/mulino/logo.webp.asset.json";
+import statuaFata from "@/assets/mulino/statua-fata-hd.webp.asset.json";
+import mulinoNotte from "@/assets/mulino/mulino-notte.webp.asset.json";
+import mulinoGiorno from "@/assets/mulino/mulino-giorno.webp.asset.json";
+import castelloNicastro from "@/assets/mulino/castello-nicastro.webp.asset.json";
+import mulinoLucciole from "@/assets/mulino/mulino-lucciole.webp.asset.json";
+import boscoLucciole from "@/assets/mulino/bosco-lucciole.webp.asset.json";
+import didatticaSentiero from "@/assets/mulino/didattica-sentiero.webp.asset.json";
+import didatticaAsinello from "@/assets/mulino/didattica-asinello.webp.asset.json";
+import didatticaLaboratori from "@/assets/mulino/didattica-laboratori.webp.asset.json";
 
 export const IMG = {
   logo: logo.url,

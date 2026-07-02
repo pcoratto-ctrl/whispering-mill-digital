@@ -15,7 +15,7 @@ import { SectionRiconoscimenti } from "@/components/mulino/SectionRiconoscimenti
 import { SectionContatti } from "@/components/mulino/SectionContatti";
 import { Footer } from "@/components/mulino/Footer";
 import { WhatsappFab } from "@/components/mulino/WhatsappFab";
-import mulinoNotte from "@/assets/mulino/mulino-notte.jpg.asset.json";
+import mulinoNotte from "@/assets/mulino/mulino-notte.webp.asset.json";
 
 const OG_IMAGE = `https://id-preview--d03e1305-b993-4aef-bb7f-8617d8701e95.lovable.app${mulinoNotte.url}`;
 
