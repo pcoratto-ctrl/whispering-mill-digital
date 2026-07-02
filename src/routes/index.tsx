@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LoadingScreen } from "@/components/mulino/LoadingScreen";
+import { useEffect, useState } from "react";
+import { IntroLanding } from "@/components/mulino/IntroLanding";
 import { Navbar } from "@/components/mulino/Navbar";
 import { Hero } from "@/components/mulino/Hero";
 import { SectionMulino } from "@/components/mulino/SectionMulino";
@@ -28,24 +29,45 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [hasEntered, setHasEntered] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("mulino-entered") === "1") {
+        setHasEntered(true);
+        setShowIntro(false);
+      }
+    } catch {}
+  }, []);
+
+  const handleEnter = () => {
+    setHasEntered(true);
+    setTimeout(() => setShowIntro(false), 50);
+  };
+
   return (
     <>
-      <LoadingScreen />
-      <Navbar />
-      <main>
-        <Hero />
-        <SectionMulino />
-        <SectionFata />
-        <SectionNatura />
-        <SectionDidattica />
-        <SectionTerritorio />
-        <SectionVideo />
-        <SectionGalleria />
-        <SectionRiconoscimenti />
-        <SectionContatti />
-      </main>
-      <Footer />
-      <WhatsappFab />
+      {showIntro && <IntroLanding onEnter={handleEnter} />}
+      {hasEntered && (
+        <>
+          <Navbar />
+          <main>
+            <Hero />
+            <SectionMulino />
+            <SectionFata />
+            <SectionNatura />
+            <SectionDidattica />
+            <SectionTerritorio />
+            <SectionVideo />
+            <SectionGalleria />
+            <SectionRiconoscimenti />
+            <SectionContatti />
+          </main>
+          <Footer />
+          <WhatsappFab />
+        </>
+      )}
     </>
   );
 }
