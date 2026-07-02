@@ -64,10 +64,11 @@ export function IntroLanding({ onEnter }: Props) {
               className="absolute inset-0 h-full w-full object-cover"
               style={{
                 opacity: active ? 1 : 0,
-                transform: active ? "scale(1.08)" : "scale(1.02)",
+                transform: active ? "scale(1.02)" : "scale(1.0)",
                 transition:
                   "opacity 2600ms cubic-bezier(0.45,0.05,0.55,0.95), transform 9000ms ease-out",
-                filter: "saturate(0.92) contrast(1.02) brightness(0.98)",
+                filter: "saturate(0.95) contrast(1.02)",
+
               }}
               loading={i === 0 ? "eager" : "lazy"}
               decoding="async"
