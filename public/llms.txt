@@ -1,0 +1,9 @@
+# Antico Mulino delle Fate
+
+> Antico mulino ad acqua del XVIII secolo a Lamezia Terme, nel bosco di Nicastro: natura, grani antichi, tradizioni locali e attività didattiche a cura dell'Associazione Culturale Amici dell'Antico Mulino delle Fate.
+
+## Pages
+
+- [Home](/): Presentazione del mulino, storia, natura, didattica, territorio, galleria e contatti.
+- [Privacy Policy](/privacy): Come vengono trattati i dati personali dei visitatori.
+- [Cookie Policy](/cookie-policy): Uso dei cookie tecnici e dei contenuti di terze parti.
