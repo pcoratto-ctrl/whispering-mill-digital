@@ -249,3 +249,27 @@
     opacity: 0.5;
   }
 }
+
+/* ------------ Museum-style typography ------------ */
+@utility museum-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  font-size: clamp(2.6rem, 8vw, 6.5rem);
+}
+@utility museum-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+@utility museum-lede {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+}
+
