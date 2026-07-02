@@ -1,90 +1,72 @@
-import { useEffect, useState } from "react";
 import { IMG } from "./assets";
 import { PillButton } from "./PillButton";
 
-const SLIDES = [
-  { src: IMG.mulinoGiorno, alt: "Esterno dell'Antico Mulino delle Fate a Lamezia Terme" },
-  { src: IMG.statuaFata, alt: "Statua della fata custode del Mulino" },
-  { src: IMG.boscoLucciole, alt: "Bosco intorno al Mulino delle Fate" },
-  { src: IMG.mulinoLucciole, alt: "Il Mulino delle Fate con lucciole nel bosco" },
-  { src: IMG.mulinoNotte, alt: "Il Mulino delle Fate di notte" },
-];
-
 export function Hero() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % SLIDES.length);
-    }, 7000);
-    return () => clearInterval(id);
-  }, []);
-
   return (
     <section
       id="home"
-      className="relative isolate min-h-dvh w-full overflow-hidden bg-pergamena"
+      className="relative isolate w-full overflow-hidden bg-pergamena"
     >
-      {/* Background slideshow — softly blurred, warm */}
-      <div className="absolute inset-0 overflow-hidden">
-        {SLIDES.map((s, i) => {
-          const isActive = i === index;
-          return (
-            <img
-              key={s.src}
-              src={s.src}
-              alt={i === 0 ? s.alt : ""}
-              aria-hidden={i === 0 ? undefined : true}
-              className="absolute inset-0 h-full w-full object-cover blur-2xl img-graded"
-              style={{
-                opacity: isActive ? 1 : 0,
-                transform: isActive ? "scale(1.12)" : "scale(1.0)",
-                transition:
-                  "opacity 2.8s cubic-bezier(0.45, 0.05, 0.55, 0.95), transform 10s ease-out",
-              }}
-              loading={i === 0 ? "eager" : "lazy"}
-            />
-          );
-        })}
-      </div>
+      {/* Spotlight beam from top */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] mx-auto h-[75%] w-[95%] max-w-6xl"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 90% at 50% 0%, color-mix(in oklab, var(--pergamena) 92%, white) 0%, color-mix(in oklab, var(--pergamena) 60%, transparent) 35%, transparent 70%)",
+          filter: "blur(2px)",
+        }}
+      />
 
-      {/* Warm parchment overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-pergamena/90 via-beige/55 to-pergamena/95" />
-      <div className="absolute inset-0 bg-gradient-to-t from-marrone/10 via-transparent to-transparent" />
-
-      {/* Content */}
-      <div className="relative z-10 mx-auto flex min-h-dvh max-w-6xl flex-col items-center justify-center px-5 pb-24 pt-32 text-center sm:px-10 sm:pb-28 sm:pt-40">
-        <p className="museum-eyebrow mb-8 text-terra/80">
+      {/* Content column */}
+      <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-5 pt-28 text-center sm:px-10 sm:pt-36">
+        <p className="museum-eyebrow mb-6 text-terra/80">
           Nicastro · Lamezia Terme · dal MDCCXXVII
         </p>
 
-        <h1 className="museum-title max-w-5xl text-bordeaux">
+        <h1 className="museum-title text-bordeaux drop-shadow-[0_1px_0_var(--pergamena)]">
           <span className="block">Antico Mulino delle Fate</span>
-          <span className="mt-2 block font-body text-[clamp(1.1rem,3vw,1.7rem)] font-light tracking-wide text-marrone">
-            Memoria, Natura e Tradizione
-          </span>
         </h1>
 
-        <p className="museum-lede mt-8 max-w-2xl text-marrone/80">
+        <p className="mt-4 font-body text-[clamp(0.95rem,1.6vw,1.15rem)] italic tracking-wide text-marrone">
+          Memoria, Natura e Tradizione
+        </p>
+
+        <p className="museum-lede mt-8 max-w-2xl text-marrone">
           Esplora un luogo dove acqua, pietra e memoria raccontano
           la storia del territorio.
         </p>
 
-        {/* UNESCO institutional badge */}
-        <div className="mt-10 inline-flex flex-col items-center gap-2 rounded-xl border border-grano/35 bg-pergamena/55 px-6 py-4 backdrop-blur-sm">
-          <span className="font-display text-sm font-medium leading-relaxed text-bordeaux">
-            Vincitore del Premio Internazionale “La Fabbrica nel Paesaggio”
-          </span>
-          <span className="h-px w-10 bg-grano/30" />
-          <span className="font-body text-[10px] font-normal tracking-[0.18em] uppercase text-marrone/90">
-            Federazione Italiana delle Associazioni e Club per l’UNESCO
-          </span>
-        </div>
-
-        <div className="mt-12">
+        <div className="mt-10">
           <PillButton href="#mulino" variant="marrone">
             Visita ora
           </PillButton>
+        </div>
+      </div>
+
+      {/* Hero image — centered, prominent */}
+      <div className="relative z-[2] mx-auto mt-12 w-full max-w-7xl px-3 sm:mt-16 sm:px-6">
+        <div className="relative overflow-hidden rounded-t-[40%_18%] shadow-[0_30px_80px_-40px_oklch(0.28_0.09_25/0.55)]">
+          <img
+            src={IMG.mulinoNotte}
+            alt="Antico Mulino delle Fate — vista notturna"
+            className="block h-auto w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      {/* UNESCO badge under image */}
+      <div className="relative z-10 mx-auto -mt-6 flex max-w-3xl justify-center px-5 pb-16 sm:pb-24">
+        <div className="inline-flex flex-col items-center gap-2 rounded-xl border border-grano/35 bg-pergamena/90 px-6 py-4 backdrop-blur-sm">
+          <span className="font-display text-sm font-medium leading-relaxed text-bordeaux">
+            Vincitore del Premio Internazionale “La Fabbrica nel Paesaggio”
+          </span>
+          <span className="h-px w-10 bg-grano/40" />
+          <span className="font-body text-[10px] font-normal tracking-[0.18em] uppercase text-marrone">
+            Federazione Italiana delle Associazioni e Club per l’UNESCO
+          </span>
         </div>
       </div>
     </section>
