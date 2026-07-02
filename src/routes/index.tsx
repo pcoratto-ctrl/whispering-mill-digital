@@ -47,7 +47,8 @@ function Index() {
     try {
       sessionStorage.setItem("mulino-entered", "1");
     } catch {}
-    setTimeout(() => setShowIntro(false), 50);
+    // Unmount intro after its exit animation completes
+    setTimeout(() => setShowIntro(false), 950);
   };
 
   return (
