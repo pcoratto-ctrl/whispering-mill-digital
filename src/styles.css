@@ -121,8 +121,6 @@
   overflow: hidden;
   isolation: isolate;
   background: var(--marrone);
-}
-@utility image-frame {
   &::after {
     content: "";
     position: absolute;
