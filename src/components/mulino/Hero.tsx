@@ -16,7 +16,7 @@ export function Hero() {
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % SLIDES.length);
-    }, 5500);
+    }, 7000);
     return () => clearInterval(id);
   }, []);
 
