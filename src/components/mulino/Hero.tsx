@@ -16,7 +16,7 @@ export function Hero() {
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % SLIDES.length);
-    }, 5500);
+    }, 7000);
     return () => clearInterval(id);
   }, []);
 
@@ -26,19 +26,26 @@ export function Hero() {
       className="relative isolate min-h-dvh w-full overflow-hidden bg-pergamena"
     >
       {/* Background slideshow — softly blurred, warm */}
-      <div className="absolute inset-0">
-        {SLIDES.map((s, i) => (
-          <img
-            key={s.src}
-            src={s.src}
-            alt={i === 0 ? s.alt : ""}
-            aria-hidden={i === 0 ? undefined : true}
-            className={`absolute inset-0 h-full w-full object-cover blur-2xl scale-110 img-graded transition-opacity duration-[2200ms] ease-in-out ${
-              i === index ? "opacity-100" : "opacity-0"
-            }`}
-            loading={i === 0 ? "eager" : "lazy"}
-          />
-        ))}
+      <div className="absolute inset-0 overflow-hidden">
+        {SLIDES.map((s, i) => {
+          const isActive = i === index;
+          return (
+            <img
+              key={s.src}
+              src={s.src}
+              alt={i === 0 ? s.alt : ""}
+              aria-hidden={i === 0 ? undefined : true}
+              className="absolute inset-0 h-full w-full object-cover blur-2xl img-graded"
+              style={{
+                opacity: isActive ? 1 : 0,
+                transform: isActive ? "scale(1.12)" : "scale(1.0)",
+                transition:
+                  "opacity 2.8s cubic-bezier(0.45, 0.05, 0.55, 0.95), transform 10s ease-out",
+              }}
+              loading={i === 0 ? "eager" : "lazy"}
+            />
+          );
+        })}
       </div>
 
       {/* Warm parchment overlay */}
