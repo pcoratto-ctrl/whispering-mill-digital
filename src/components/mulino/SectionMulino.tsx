@@ -11,8 +11,8 @@ export function SectionMulino() {
             src={IMG.mulinoGiorno}
             alt="Esterno dell'Antico Mulino delle Fate a Lamezia Terme, in pietra e mattoni"
             variant="soft"
-            ratio="4/5"
             frameClassName="w-full rounded-sm shadow-[0_30px_60px_-30px_oklch(0.28_0.09_25/0.35)]"
+            imgClassName="block h-auto w-full object-contain"
           />
         </ScrollReveal>
 
