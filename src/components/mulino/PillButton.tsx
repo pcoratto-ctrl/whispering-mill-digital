@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-type Variant = "primary" | "onDark" | "outline";
+type Variant = "primary" | "onDark" | "outline" | "marrone";
 
 interface PillButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,6 +19,8 @@ const variants: Record<Variant, string> = {
     "bg-pergamena text-bordeaux shadow-[0_10px_30px_-10px_oklch(0.15_0.05_25/0.6)] hover:bg-[oklch(0.96_0.03_82)]",
   outline:
     "bg-transparent text-pergamena ring-1 ring-pergamena/50 hover:ring-grano hover:text-grano",
+  marrone:
+    "bg-marrone text-pergamena shadow-[0_10px_30px_-10px_oklch(0.34_0.075_40/0.5)] hover:bg-[oklch(0.30_0.08_40)]",
 };
 
 const circle = (variant: Variant) =>
@@ -26,7 +28,9 @@ const circle = (variant: Variant) =>
     ? "bg-pergamena text-bordeaux"
     : variant === "onDark"
       ? "bg-bordeaux text-pergamena"
-      : "bg-pergamena/20 text-pergamena group-hover:bg-grano group-hover:text-bordeaux";
+      : variant === "marrone"
+        ? "bg-pergamena text-marrone"
+        : "bg-pergamena/20 text-pergamena group-hover:bg-grano group-hover:text-bordeaux";
 
 export const PillButton = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
