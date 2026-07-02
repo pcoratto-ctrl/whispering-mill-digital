@@ -6,13 +6,34 @@ interface Props {
   onEnter: () => void;
 }
 
+const SLIDES = [
+  IMG.mulinoGiorno,
+  IMG.statuaFata,
+  IMG.boscoLucciole,
+  IMG.mulinoNotte,
+  IMG.mulinoLucciole,
+];
+
 export function IntroLanding({ onEnter }: Props) {
   const [leaving, setLeaving] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [slide, setSlide] = useState(0);
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 30);
     return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    // Preload for high-res smooth transitions
+    SLIDES.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+    const id = setInterval(() => {
+      setSlide((s) => (s + 1) % SLIDES.length);
+    }, 6500);
+    return () => clearInterval(id);
   }, []);
 
   const handleEnter = () => {
@@ -28,39 +49,50 @@ export function IntroLanding({ onEnter }: Props) {
       className={`fixed inset-0 z-[100] overflow-hidden transition-opacity duration-[900ms] ease-out ${
         leaving ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
-      style={{
-        background:
-          "radial-gradient(ellipse at 50% 30%, oklch(0.94 0.04 78) 0%, oklch(0.88 0.05 70) 55%, oklch(0.78 0.06 55) 100%)",
-      }}
+      style={{ background: "var(--pergamena)" }}
     >
-      {/* Background image — mulino/bosco molto sfumato */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `url(${IMG.mulinoGiorno})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          filter: "blur(20px) saturate(0.75) brightness(1.05) sepia(0.15)",
-          opacity: 0.4,
-          transform: "scale(1.15)",
-        }}
-      />
-      {/* Warm parchment veil */}
+      {/* Slideshow di sfondo — alta risoluzione, dissolvenza fluida */}
+      <div className="absolute inset-0">
+        {SLIDES.map((src, i) => {
+          const active = i === slide;
+          return (
+            <img
+              key={src}
+              src={src}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{
+                opacity: active ? 1 : 0,
+                transform: active ? "scale(1.08)" : "scale(1.02)",
+                transition:
+                  "opacity 2600ms cubic-bezier(0.45,0.05,0.55,0.95), transform 9000ms ease-out",
+                filter: "saturate(0.92) contrast(1.02) brightness(0.98)",
+              }}
+              loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
+          );
+        })}
+      </div>
+
+      {/* Warm parchment veil — leggero, per lasciare respirare le foto */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, color-mix(in oklab, var(--pergamena) 82%, transparent) 0%, color-mix(in oklab, var(--beige) 70%, transparent) 60%, color-mix(in oklab, var(--marrone) 25%, transparent) 100%)",
+            "linear-gradient(180deg, color-mix(in oklab, var(--pergamena) 55%, transparent) 0%, color-mix(in oklab, var(--beige) 30%, transparent) 55%, color-mix(in oklab, var(--marrone) 45%, transparent) 100%)",
         }}
       />
-      {/* Soft mist / grano glow */}
+      {/* Vignette morbida per leggibilità del testo */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 15% 85%, color-mix(in oklab, var(--grano) 22%, transparent) 0%, transparent 45%), radial-gradient(circle at 85% 15%, color-mix(in oklab, var(--bordeaux) 12%, transparent) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 50% 45%, transparent 0%, transparent 45%, color-mix(in oklab, var(--marrone) 35%, transparent) 100%)",
         }}
       />
+
 
       {/* Content */}
       <div
