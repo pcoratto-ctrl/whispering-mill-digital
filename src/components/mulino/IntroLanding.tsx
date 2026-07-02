@@ -6,13 +6,7 @@ interface Props {
   onEnter: () => void;
 }
 
-const SLIDES = [
-  IMG.mulinoGiorno,
-  IMG.statuaFata,
-  IMG.boscoLucciole,
-  IMG.mulinoNotte,
-  IMG.mulinoLucciole,
-];
+const SLIDES = [IMG.mulinoGiorno, IMG.statuaFata, IMG.mulinoNotte];
 
 export function IntroLanding({ onEnter }: Props) {
   const [leaving, setLeaving] = useState(false);
@@ -25,7 +19,6 @@ export function IntroLanding({ onEnter }: Props) {
   }, []);
 
   useEffect(() => {
-    // Preload for high-res smooth transitions
     SLIDES.forEach((src) => {
       const img = new Image();
       img.src = src;
@@ -44,6 +37,10 @@ export function IntroLanding({ onEnter }: Props) {
     setTimeout(onEnter, 900);
   };
 
+  // Text shadow for readability over photography (no big boxes)
+  const softShadow =
+    "0 1px 2px oklch(0.15 0.05 25 / 0.55), 0 2px 12px oklch(0.15 0.05 25 / 0.45)";
+
   return (
     <div
       className={`fixed inset-0 z-[100] overflow-hidden transition-opacity duration-[900ms] ease-out ${
@@ -51,7 +48,7 @@ export function IntroLanding({ onEnter }: Props) {
       }`}
       style={{ background: "var(--pergamena)" }}
     >
-      {/* Slideshow di sfondo — alta risoluzione, dissolvenza fluida */}
+      {/* Slideshow */}
       <div className="absolute inset-0">
         {SLIDES.map((src, i) => {
           const active = i === slide;
@@ -64,11 +61,9 @@ export function IntroLanding({ onEnter }: Props) {
               className="absolute inset-0 h-full w-full object-cover"
               style={{
                 opacity: active ? 1 : 0,
-                transform: active ? "scale(1.02)" : "scale(1.0)",
+                transform: active ? "scale(1.03)" : "scale(1.0)",
                 transition:
                   "opacity 2600ms cubic-bezier(0.45,0.05,0.55,0.95), transform 9000ms ease-out",
-                filter: "saturate(0.95) contrast(1.02)",
-
               }}
               loading={i === 0 ? "eager" : "lazy"}
               decoding="async"
@@ -77,89 +72,90 @@ export function IntroLanding({ onEnter }: Props) {
         })}
       </div>
 
-      {/* Warm parchment veil — leggero, per lasciare respirare le foto */}
+      {/* Subtle bottom gradient only where text sits — keeps photos visible */}
       <div
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
         style={{
           background:
-            "linear-gradient(180deg, color-mix(in oklab, var(--pergamena) 55%, transparent) 0%, color-mix(in oklab, var(--beige) 30%, transparent) 55%, color-mix(in oklab, var(--marrone) 45%, transparent) 100%)",
+            "linear-gradient(180deg, transparent 0%, oklch(0.18 0.05 25 / 0.15) 40%, oklch(0.15 0.05 25 / 0.55) 100%)",
         }}
       />
-      {/* Vignette morbida per leggibilità del testo */}
+      {/* Top light veil for the logo pill */}
       <div
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-x-0 top-0 h-40"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 45%, transparent 0%, transparent 45%, color-mix(in oklab, var(--marrone) 35%, transparent) 100%)",
+            "linear-gradient(180deg, oklch(0.15 0.05 25 / 0.35) 0%, transparent 100%)",
         }}
       />
-
 
       {/* Content */}
       <div
-        className={`relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-12 text-center transition-all duration-[1200ms] ease-out ${
+        className={`relative z-10 flex min-h-screen flex-col items-center justify-end px-6 pb-14 text-center transition-all duration-[1200ms] ease-out sm:pb-20 ${
           mounted && !leaving ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}
       >
-        <div className="mx-auto max-w-5xl">
-          {/* Logo mark */}
-          <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-pergamena/90 ring-1 ring-grano/40 shadow-[0_10px_30px_-15px_oklch(0.28_0.09_25/0.5)]">
+        {/* Logo mark top */}
+        <div className="absolute left-1/2 top-8 -translate-x-1/2">
+          <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-pergamena/90 ring-1 ring-grano/40 shadow-[0_10px_30px_-15px_oklch(0.15_0.05_25/0.6)]">
             <img
               src={IMG.logo}
               alt="Logo Associazione Amici dell'Antico Mulino delle Fate"
               className="h-full w-full object-cover"
             />
           </div>
+        </div>
 
-          <div className="inline-flex rounded-full border border-pergamena/40 bg-pergamena/70 px-5 py-2 shadow-[0_10px_30px_-15px_oklch(0.28_0.09_25/0.4)] backdrop-blur-md">
-            <p className="museum-eyebrow text-bordeaux/80">
-              Associazione Culturale · Lamezia Terme
-            </p>
-          </div>
+        <div className="mx-auto max-w-2xl text-pergamena" style={{ textShadow: softShadow }}>
+          <p
+            className="text-[11px] font-medium uppercase tracking-[0.28em] text-pergamena/90 sm:text-xs"
+            style={{ fontFamily: "var(--font-sans)" }}
+          >
+            Associazione Culturale · Lamezia Terme
+          </p>
 
-          <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-pergamena/40 bg-pergamena/75 px-6 py-6 shadow-[0_20px_60px_-25px_oklch(0.28_0.09_25/0.55)] backdrop-blur-xl sm:px-10 sm:py-8">
-            <h1 className="museum-title">
-              <span className="block text-bordeaux">
-                Antico Mulino delle Fate
-              </span>
-              <span
-                className="mt-1 block italic"
-                style={{ color: "color-mix(in oklab, var(--terra) 60%, var(--bordeaux))" }}
-              >
-                Memoria, Natura e Tradizione
-              </span>
-            </h1>
+          <h1
+            className="mt-4 text-3xl leading-tight sm:text-4xl md:text-5xl"
+            style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}
+          >
+            <span className="block">Antico Mulino delle Fate</span>
+            <span className="mt-1 block text-lg italic text-pergamena/90 sm:text-xl md:text-2xl">
+              Memoria, Natura e Tradizione
+            </span>
+          </h1>
 
-            <p className="museum-lede mx-auto mt-6 max-w-xl text-marrone">
-              Esplora un luogo dove acqua, pietra e memoria raccontano
-              la storia del territorio.
-            </p>
-          </div>
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-pergamena/90 sm:text-base">
+            Un luogo dove acqua, pietra e memoria raccontano la storia del territorio.
+          </p>
 
-          {/* CTA */}
-          <div className="mt-10 flex justify-center">
+          <div className="mt-7 flex justify-center">
             <PillButton onClick={handleEnter} variant="primary" aria-label="Visita ora il sito">
               Visita ora
             </PillButton>
           </div>
 
-          {/* Awards / attribution */}
-          <div className="mx-auto mt-12 inline-flex max-w-lg flex-col items-center gap-2 rounded-2xl border border-pergamena/40 bg-pergamena/70 px-6 py-5 shadow-[0_15px_45px_-20px_oklch(0.28_0.09_25/0.5)] backdrop-blur-md">
-            <p className="museum-eyebrow text-bordeaux/75">
-              Vincitore del Premio Internazionale
-            </p>
-            <p
-              className="text-base italic text-bordeaux sm:text-lg"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
+          <p className="mt-8 text-[11px] tracking-wide text-pergamena/80 sm:text-xs">
+            Vincitore del Premio Internazionale{" "}
+            <span className="italic" style={{ fontFamily: "var(--font-display)" }}>
               «La Fabbrica nel Paesaggio»
-            </p>
-            <span className="h-px w-10 bg-grano/50" />
-            <p className="max-w-md text-[11px] tracking-wide text-marrone/85 sm:text-xs">
-              Realtà culturale legata alla Federazione Italiana delle
-              Associazioni e Club per l’UNESCO
-            </p>
-          </div>
+            </span>{" "}
+            · Federazione Italiana Club UNESCO
+          </p>
+        </div>
+
+        {/* Slide indicators */}
+        <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
+          {SLIDES.map((_, i) => (
+            <span
+              key={i}
+              className="h-1 rounded-full transition-all duration-500"
+              style={{
+                width: i === slide ? 24 : 8,
+                background:
+                  i === slide ? "oklch(0.97 0.02 80 / 0.95)" : "oklch(0.97 0.02 80 / 0.45)",
+              }}
+            />
+          ))}
         </div>
       </div>
     </div>
