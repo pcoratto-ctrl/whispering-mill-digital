@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IMG } from "./assets";
 import { GradedImage } from "./GradedImage";
+import { PillButton } from "./PillButton";
 
 const SLIDES = [
   { src: IMG.statuaFata, alt: "Statua della fata Gelsomina davanti alla ruota dell'Antico Mulino delle Fate" },
@@ -16,7 +17,10 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative isolate min-h-dvh w-full overflow-hidden bg-[oklch(0.18_0.05_25)]">
+    <section
+      id="home"
+      className="relative isolate min-h-dvh w-full overflow-hidden bg-[oklch(0.18_0.05_25)]"
+    >
       {SLIDES.map((s, idx) => (
         <div
           key={s.src}
@@ -35,32 +39,33 @@ export function Hero() {
         </div>
       ))}
 
-      <div className="relative z-10 mx-auto flex min-h-dvh max-w-6xl flex-col items-start justify-end px-5 pb-16 pt-32 sm:px-10 sm:pb-24 sm:pt-40">
-        <div className="ornament-rule mb-6 max-w-[300px] text-grano/90">Nicastro · MDCCXXVII</div>
-        <h1 className="max-w-4xl font-display text-[clamp(2.6rem,7vw,5.5rem)] font-medium leading-[1.02] text-pergamena">
-          Antico Mulino
-          <span className="block italic text-grano/95">delle Fate</span>
+      <div className="relative z-10 mx-auto flex min-h-dvh max-w-6xl flex-col items-center justify-center px-5 pb-24 pt-32 text-center sm:px-10 sm:pb-28 sm:pt-40">
+        <p className="museum-eyebrow mb-8 text-grano/90">
+          Nicastro · Lamezia Terme · dal MDCCXXVII
+        </p>
+
+        <h1 className="museum-title max-w-5xl text-pergamena">
+          <span className="block">Antico Mulino delle Fate</span>
+          <span
+            className="mt-2 block italic"
+            style={{ color: "color-mix(in oklab, var(--grano) 85%, var(--pergamena))" }}
+          >
+            Memoria, Natura e Tradizione
+          </span>
         </h1>
-        <p className="mt-6 max-w-2xl font-display text-xl italic leading-snug text-pergamena/90 sm:text-2xl">
-          Dove l'acqua muoveva la pietra, oggi continua a muoversi la memoria.
+
+        <p className="museum-lede mt-10 max-w-2xl text-pergamena/85">
+          Esplora un luogo dove acqua, pietra e memoria raccontano
+          la storia del territorio.
         </p>
-        <p className="mt-6 max-w-xl text-sm leading-relaxed text-pergamena/75 sm:text-base">
-          Un antico mulino ad acqua del XVIII secolo a Lamezia Terme, recuperato e valorizzato
-          per custodire le tradizioni locali, la natura e la cultura della macinazione.
-        </p>
-        <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
-          <a
-            href="#mulino"
-            className="inline-flex items-center justify-center rounded-full border border-grano/70 bg-grano/90 px-7 py-3 text-sm uppercase tracking-[0.22em] text-bordeaux transition-colors hover:bg-grano"
-          >
+
+        <div className="mt-12 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row sm:gap-5">
+          <PillButton href="#mulino" variant="onDark">
             Scopri la storia
-          </a>
-          <a
-            href="#video"
-            className="inline-flex items-center justify-center rounded-full border border-pergamena/40 px-7 py-3 text-sm uppercase tracking-[0.22em] text-pergamena transition-colors hover:border-grano hover:text-grano"
-          >
+          </PillButton>
+          <PillButton href="#video" variant="outline">
             Guarda il video
-          </a>
+          </PillButton>
         </div>
       </div>
 
